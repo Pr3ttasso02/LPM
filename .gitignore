@@ -25,3 +25,7 @@ replay_pid*
 
 # Binaries
 **/*.exe
+
+#VS Code configuration
+.vscode/
+
