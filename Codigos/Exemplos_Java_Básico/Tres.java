@@ -7,7 +7,7 @@ public class Tres {
         int tamanho;
         int[] v;
         
-        System.out.print("Qual será o tamanho do vetor? ")
+        System.out.print("Qual será o tamanho do vetor? ");
         tamanho = Integer.parseInt(leitorTeclado.nextLine());
         v = new int[tamanho];
 
