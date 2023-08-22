@@ -1,7 +1,7 @@
 /** 
  * MIT License
  *
- * Copyright(c) 2022 João Caram <caram@pucminas.br>
+ * Copyright(c) 2023 João Caram <caram@pucminas.br>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,30 +29,44 @@
 public class HoraApp {
     
     public static void main(String[] args) {
-        Hora hora = new Hora();
+        Hora hora1 = new Hora();
         Hora hora2 = new Hora();
 
-        hora.ajustar((byte)22, (byte)33, (byte)45); 
-        System.out.println(hora.hora+":"+hora.minuto+":"+hora.segundo);
+        hora1.ajustar((byte)22, (byte)33, (byte)45);
+        System.out.print("Hora 1: ");
+        System.out.println(hora1.horaFormatada());
 
-        hora.incrementar((byte)12, 'm');
-        System.out.println(hora.hora+":"+hora.minuto+":"+hora.segundo);
+        hora1.incrementar((byte)12, 'm');
+        System.out.print("Hora 1: ");
+        System.out.println(hora1.horaFormatada());
     
-        hora.incrementar((byte)25, 'm');
-        System.out.println(hora.hora+":"+hora.minuto+":"+hora.segundo);
+        hora1.incrementar((byte)25, 'm');
+        System.out.print("Hora 1: ");
+        System.out.println(hora1.horaFormatada());
+        
+        hora1.incrementar((byte)55, 's');
+        System.out.print("Hora 1: ");
+        System.out.println(hora1.horaFormatada());
 
-        hora.incrementar((byte)55, 's');
-        System.out.println(hora.hora+":"+hora.minuto+":"+hora.segundo);
+        hora1.incrementar((byte)4, 'h');
+        System.out.print("Hora 1: ");
+        System.out.println(hora1.horaFormatada());
 
-        hora.incrementar((byte)4, 'h');
-        System.out.println(hora.hora+":"+hora.minuto+":"+hora.segundo);
+        hora1.ajustar((byte)22, (byte)33, (byte)45); 
+        System.out.print("Hora 1: ");
+        System.out.println(hora1.horaFormatada());
 
-        hora.ajustar((byte)22, (byte)33, (byte)45); 
-        System.out.println(hora.estahNaFrenteDe(hora2));
+        System.out.print("Hora 2: ");
+        System.out.println(hora2.horaFormatada());
+        
+        System.out.print("Hora 1 está na frente de hora 2? ");
+        System.out.println(hora1.estahNaFrenteDe(hora2));
 
-        System.out.println(hora2.estahNaFrenteDe(hora));
+        System.out.print("Hora 2 está na frente de hora 1? ");
+        System.out.println(hora2.estahNaFrenteDe(hora1));
 
-        hora.ajustar((byte)27, (byte)33, (byte)45);
-        System.out.println(hora.hora+":"+hora.minuto+":"+hora.segundo);
+        hora1.ajustar((byte)27, (byte)33, (byte)45);
+        System.out.print("Hora 1 ajustada para 27:33:45: ");
+        System.out.println(hora1.horaFormatada());
     }
 }
