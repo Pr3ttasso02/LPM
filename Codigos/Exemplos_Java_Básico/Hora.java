@@ -1,7 +1,7 @@
 /** 
  * MIT License
  *
- * Copyright(c) 2022 João Caram <caram@pucminas.br>
+ * Copyright(c) 2023 João Caram <caram@pucminas.br>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,11 +23,23 @@
  */
 
  /**
-  * Primeira versão da classe Hora para demonstração de conceitos básicos de classe e objetos: atributos, métodos, parâmetros, documentação.
-  * Esta classe tem a responsabilidade de armazenar um horário do dia, considerando 24h.
+  * Primeira versão da classe Hora para demonstração de conceitos básicos de
+  * classe e objetos: atributos, métodos, parâmetros, documentação.
+  * Esta classe tem a responsabilidade de armazenar um horário do dia,
+  * considerando 24h.
   * Pode <b> e deve </b> ser melhorada com futuros conhecimentos.
   */
 public class Hora {
+ 
+    //#region Requisitos do problema
+    /*
+     * A hora será representada até o nível de segundos.
+        Um objeto Hora só pode armazenar estados válidos. 
+        Um objeto Hora pode receber incrementos de horas, minutos ou segundos.
+        Um objeto Hora pode ser comparado com outro para verificação de qual valor está mais adiante.
+     */
+
+    //#endregion
 
     //#region atributos
     
@@ -40,7 +52,8 @@ public class Hora {
     //#region métodos
     
     /**
-     * Ajusta uma hora para o valor desejado de horas, minutos e segundos. Em caso de valores inválidos, a hora retorna para 00:00:00.
+     * Ajusta uma hora para o valor desejado de horas, minutos e segundos. 
+     * Em caso de valores inválidos, a hora retorna para 00:00:00.
      * @param hora A hora desejada (0 a 23)
      * @param minuto O minuto desejado (0 a 59)
      * @param segundo O segundo desejado (0 a 59)
@@ -54,10 +67,11 @@ public class Hora {
     }
 
     /**
-     * Incrementa uma das partes da hora armazenada (hora, minuto ou segundo). O incremento só pode ser feito em valores de até 60 unidades para a parte escolhida.
-     * Caso a quantidade for maior que 60, o incremento será ignorado. O componente da hora se ajusta automaticamente ao incremento. Por exemplo, na hora <i> 13:42:50 </i>, se forem incrementados
-     * 25 segundos, a hora armazenada será <i> 13:43:15 </i>. O componente a ser incrementado deve ser indicado por uma letra minúscula (h: hora, m: minuto, s: segundo). Outras letras serão
-     * ignoradas.
+     * Incrementa uma das partes da hora armazenada (hora, minuto ou segundo). O incremento só pode ser feito em valores de até 60 unidades
+     * para a parte escolhida. Caso a quantidade for maior que 60, o incremento será ignorado. 
+     * O componente da hora se ajusta automaticamente ao incremento. Por exemplo, na hora <i> 13:42:50 </i>, se forem incrementados
+     * 25 segundos, a hora armazenada será <i> 13:43:15 </i>. O componente a ser incrementado deve ser indicado 
+     * por uma letra minúscula (h: hora, m: minuto, s: segundo). Outras letras serão ignoradas.
      * @param quant Unidades a serem incrementadas no compomente da hora. Valores menores que 0 ou maiores que 60 são ignorados.
      * @param posicao O componente do incremento: h: hora, m: minuto, s: segundo. Outras letras serão ignoradas.
      */
@@ -75,8 +89,8 @@ public class Hora {
                 break;
         }
         if(this.segundo>=60){       //ajuste caso os segundos ultrapassem 60
-            acumulador = this.segundo/60;
-            this.segundo = (byte) (this.segundo % 60);
+            acumulador = this.segundo/60;   //  85 / 60 = 1
+            this.segundo = (byte) (this.segundo % 60);  // 85 % 60 = 25
             this.minuto += acumulador;
         }
         if(this.minuto>=60){        //ajuste caso os minutos ultrapassem 60
@@ -104,8 +118,10 @@ public class Hora {
     }
 
     /**
-     * Verifica se esta hora encontra-se à frente de outra considerando um dia de 24h. Retorna TRUE ou FALSE conforme esta hora esteja na frente.
-     * Perceba que a ação é feita a partir da conversão de todos os valores para segundos, seguida de uma comparação simples. Há outras maneiras de resolver ;-)
+     * Verifica se esta hora encontra-se à frente de outra considerando um dia de 24h. 
+     * Retorna TRUE ou FALSE conforme esta hora esteja na frente.
+     * Perceba que a ação é feita a partir da conversão de todos os valores para segundos, seguida de uma comparação simples.
+     * Há outras maneiras de resolver ;-)
      * @param outra A outra hora a ser comparada com esta
      * @return TRUE se esta hora está à frente no relógio, FALSE caso contrário.
      */
@@ -113,7 +129,23 @@ public class Hora {
 		int esta;
 		esta = hora*3600 + minuto*60 + segundo;		
 		int aquela;
-		aquela = outra.hora*3600 + outra.minuto*60 + outra.segundo;		return (esta > aquela);		
+		aquela = outra.hora*3600 + outra.minuto*60 + outra.segundo;
+        return (esta > aquela);		
 	}
+
+    /**
+     * Retorna uma string com a hora formatada no formato de 24h
+     * (HH:MM:SS)
+     * @return A hora formatada como HH:MM:SS
+     */
+    String horaFormatada(){
+        String horaF = String.format("%02d", this.hora);
+        String minutoF = String.format("%02d", this.minuto);
+        String segundoF = String.format("%02d", this.segundo);
+    
+        return horaF + ":" + minutoF + ":" + segundoF;
+    }
+
+
     //#endregion
 }
