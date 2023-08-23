@@ -115,5 +115,18 @@ public class Hora {
 		int aquela;
 		aquela = outra.hora*3600 + outra.minuto*60 + outra.segundo;		return (esta > aquela);		
 	}
+
+    /**
+     * Retorna uma string com a hora formatada no formato de 24h
+     * (HH:MM:SS)
+     * @return A hora formatada como HH:MM:SS
+     */
+    String horaFormatada(){
+        String horaF = String.format("%02d", this.hora);
+        String minutoF = String.format("%02d", this.minuto);
+        String segundoF = String.format("%02d", this.segundo);
+    
+        return horaF + ":" + minutoF + ":" + segundoF;
+    }
     //#endregion
 }
