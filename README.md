@@ -67,3 +67,36 @@ public class SomaVizinhos {
         }
     }
 }  
+
+
+ArquivoData;
+
+import java.util.Calendar;
+
+public class Data {
+    private int dia;
+    private int mes;
+    private int ano;
+
+    public Data(int dia, int mes, int ano) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setLenient(false); // Evita que datas inválidas sejam aceitas
+        calendar.set(Calendar.YEAR, ano);
+        calendar.set(Calendar.MONTH, mes - 1); // Mês começa de 0 em Calendar
+        calendar.set(Calendar.DAY_OF_MONTH, dia);
+
+        // Verifica se a data é válida, caso contrário, reverter para 01/01/1900
+        try {
+            calendar.getTime(); // Vai lançar uma exceção para datas inválidas
+            this.dia = dia;
+            this.mes = mes;
+            this.ano = ano;
+        } catch (Exception e) {
+            this.dia = 1;
+            this.mes = 1;
+            this.ano = 1900;
+        }
+    }
+
+}
+
